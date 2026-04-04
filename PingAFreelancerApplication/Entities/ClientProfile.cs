@@ -11,5 +11,5 @@ public class ClientProfile
     public virtual UserProfile User { get; set; }
 
     public Persona Persona { get; set; } = Persona.Client;
-    public ICollection<Ping> SentPings { get; set; } = new List<Ping>();
+    public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 }

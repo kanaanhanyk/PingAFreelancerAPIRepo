@@ -15,9 +15,6 @@ public class UserProfile
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
     public DateTime DateRegistered { get; set; }
-    public decimal AverageRating { get; set; }
-    public int TotalReviews { get; set;  }
-    public int TotalInteractions { get; set; }
     public string PhotoPath { get; set; } = string.Empty;
     public bool IsActive { get; set; }
     public Persona Persona { get; set; }

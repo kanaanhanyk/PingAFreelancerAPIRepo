@@ -7,6 +7,7 @@ namespace PingAFreelancerApplication.Entities;
 public enum Status
 {
     Pinged,
+    Matched,
     Contracted,
     Fulfilled
 }

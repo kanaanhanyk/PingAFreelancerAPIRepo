@@ -13,9 +13,10 @@ public class FreelancerProfile
     public Domain Domain { get; set; }
     public int ExpertiseId { get; set; }
     public Expertise Expertise { get; set; }
-    public int HourlyRate { get; set; }
+    public decimal HourlyRate { get; set; }
     public int HoursBilled { get; set; }
+    public decimal AverageRating { get; set; }
+    public int TotalInteractions { get; set; }
     public Persona Persona { get; set; } = Persona.Freelancer;
     public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
-    public ICollection<Ping> ReceivedPings { get; set; } = new List<Ping>();
 }
