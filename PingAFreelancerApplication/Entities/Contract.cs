@@ -13,6 +13,7 @@ public class Contract
 
     public string FreelancerId { get; set; }
     public FreelancerProfile Freelancer { get; set; }
+    
     public int? Rating { get; set; }
     public int? HoursContracted { get; set; }
     public decimal? AmountPaid { get; set; }
