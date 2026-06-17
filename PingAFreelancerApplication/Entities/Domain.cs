@@ -10,7 +10,7 @@ public class Domain
     public string Name { get; set; }
     public string PhotoPath { get; set; }
     public string BorderColor { get; set; }
-    public ICollection<FreelancerProfile> Freelancers { get; set; } = new List<FreelancerProfile>();
+    public ICollection<Freelancer> Freelancers { get; set; } = new List<FreelancerProfile>();
     public ICollection<Expertise> Expertises { get; set; } = new List<Expertise>();
 
 }

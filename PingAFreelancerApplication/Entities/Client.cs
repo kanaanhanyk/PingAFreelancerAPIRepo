@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PingAFreelancerApplication.Entities;
 
-public class ClientProfile
+public class Client
 {
     public string Id { get; set; }
 

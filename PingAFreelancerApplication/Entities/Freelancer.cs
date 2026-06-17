@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PingAFreelancerApplication.Entities;
 
-public class FreelancerProfile
+public class Freelancer
 {
     public string Id { get; set; } 
     public string PhoneNumber { get; set; } = string.Empty;
