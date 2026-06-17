@@ -1,6 +1,4 @@
-﻿using System.Buffers.Text;
-using System.Runtime.Intrinsics.Arm.Arm64;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,7 +11,6 @@ public class PingAFreelancerContext : DbContext
 
     }
 
-    public DbSet<UserProfile> Users { get; set; }
     public DbSet<FreelancerProfile> Freelancers { get; set; }
     public DbSet<ClientProfile> Clients { get; set; }
     public DbSet<Contract> Contracts { get; set; }
