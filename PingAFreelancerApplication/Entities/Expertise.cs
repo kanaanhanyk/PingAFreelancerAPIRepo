@@ -12,5 +12,5 @@ public class Expertise
     public string Name { get; set; }
     public string BorderColor { get; set; }
     public string PhotoPath { get; set; }
-    public ICollection<Freelancer> Freelancers { get; set; } = new List<FreelancerProfile>();
+    public ICollection<Freelancer> Freelancers { get; set; } = new List<Freelancer>();
 }

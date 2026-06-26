@@ -24,4 +24,6 @@ public class Freelancer
     public DateTime DateRegistered { get; set; }
     public string PhotoPath { get; set; } = string.Empty;
     public bool IsActive { get; set; }
+
+    public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 }

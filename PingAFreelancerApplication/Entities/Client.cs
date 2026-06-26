@@ -13,4 +13,6 @@ public class Client
     public string LastName { get; set; } = string.Empty;
     public double? Latitude { get; set; }
     public double? Longitude { get; set; }
+
+    public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
 }

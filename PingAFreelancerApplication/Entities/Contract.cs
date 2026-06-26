@@ -9,10 +9,10 @@ public class Contract
     public string Id { get; set; }
 
     public string ClientId { get; set; }
-    public ClientProfile Client { get; set; }
+    public Client Client { get; set; }
 
     public string FreelancerId { get; set; }
-    public FreelancerProfile Freelancer { get; set; }
+    public Freelancer Freelancer { get; set; }
     
     public int? Rating { get; set; }
     public int? HoursContracted { get; set; }
