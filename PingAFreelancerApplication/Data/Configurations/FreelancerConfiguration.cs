@@ -18,7 +18,6 @@ public class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
         entity.Property(f => f.LastName).IsRequired();
         entity.Property(f => f.Latitude).IsRequired();
         entity.Property(f => f.Longitude).IsRequired();
-        entity.Property(f => f.DateRegistered).IsRequired();
         entity.Property(f => f.PhotoPath).IsRequired();
         entity.Property(f => f.IsActive).IsRequired();
         entity.Property(f => f.PhoneNumber).IsRequired();
@@ -34,5 +33,29 @@ public class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
         entity.HasMany(f => f.Contracts)
             .WithOne(c => c.Freelancer)
             .HasForeignKey(c => c.FreelancerId);
+
+        entity.Property(f => f.DateRegistered)
+            .IsRequired()
+            .HasDefaultValueSql("SYSDATETIMEOFFSET()");
+
+        entity.Property(f => f.HourlyRate)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        entity.Property(f => f.HoursBilled)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        entity.Property(f => f.InteractionCount)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        entity.Property(f => f.RatingSum)
+            .IsRequired()
+            .HasDefaultValue(0);
+
+        entity.Property(f => f.IsActive)
+            .IsRequired()
+            .HasDefaultValue(true);
     }
 }

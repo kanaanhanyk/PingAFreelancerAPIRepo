@@ -7,12 +7,18 @@ namespace PingAFreelancerApplication.Entities;
 
 public class Client
 {
-    public string Id { get; set; }
+    public Guid Id { get; set; }
 
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
-    public double? Latitude { get; set; }
-    public double? Longitude { get; set; }
+    public string DisplayName { get; set; } = default!;
+    public string Email { get; set; } = default!;
+    public string? PhoneNumber { get; set; }
+    public DateTimeOffset DateRegistered { get; set; } 
+    public decimal TotalSpent { get; set; }
+    public decimal HoursBilled { get; set; }
+    public bool IsActive { get; set; }
+    public int InteractionCount { get; set; }
+    public decimal RatingSum { get; set; }
 
     public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+
 }

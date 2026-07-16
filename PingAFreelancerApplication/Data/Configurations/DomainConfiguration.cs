@@ -13,10 +13,13 @@ public class DomainConfiguration : IEntityTypeConfiguration<Domain>
     public void Configure(EntityTypeBuilder<Domain> entity)
     {
         entity.HasKey(d => d.Id);
-        entity.Property(d => d.Id).IsRequired();
+
+        entity.Property(d => d.Id)
+            .IsRequired()
+            .ValueGeneratedOnAdd();
+
         entity.Property(d => d.Name).IsRequired();
         entity.Property(d => d.PhotoPath).IsRequired();
-        entity.Property(d => d.BorderColor).IsRequired();
 
         entity.HasMany(d => d.Freelancers)
             .WithOne(f => f.Domain)

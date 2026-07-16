@@ -6,20 +6,20 @@ namespace PingAFreelancerApplication.Entities;
 
 public class Contract
 {
-    public string Id { get; set; }
+    public Guid Id { get; set; }
 
-    public string ClientId { get; set; }
+    public Guid ClientId { get; set; }
     public Client Client { get; set; }
 
-    public string FreelancerId { get; set; }
+    public Guid FreelancerId { get; set; }
     public Freelancer Freelancer { get; set; }
     
     public int? Rating { get; set; }
     public int? HoursContracted { get; set; }
     public decimal? AmountPaid { get; set; }
-    public DateTime DatePinged { get; set; }
-    public DateTime? DateStarted { get; set; }
-    public DateTime? DateCompleted { get; set; }
+    public DateTimeOffset DatePinged { get; set; }
+    public DateTimeOffset? DateStarted { get; set; }
+    public DateTimeOffset? DateCompleted { get; set; }
     public string Message { get; set; }
     public Status Status { get; set; }
     public bool? IsMatchSeen { get; set; }
