@@ -10,8 +10,7 @@ public class Expertise
 
     public int DomainId { get; set; }
     public Domain Domain { get; set; }
-    public string Name { get; set; }
-    public string BorderColor { get; set; }
-    public string PhotoPath { get; set; }
+    public required string Name { get; set; }
+    public required string PhotoPath { get; set; }
     public ICollection<Freelancer> Freelancers { get; set; } = new List<Freelancer>();
 }

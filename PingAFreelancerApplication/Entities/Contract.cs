@@ -18,10 +18,11 @@ public class Contract
     public int? HoursContracted { get; set; }
     public decimal? AmountPaid { get; set; }
     public DateTimeOffset DatePinged { get; set; }
-    public DateTimeOffset? DateStarted { get; set; }
-    public DateTimeOffset? DateCompleted { get; set; }
-    public string Message { get; set; }
-    public Status Status { get; set; }
-    public bool? IsMatchSeen { get; set; }
-    public bool? IsContractedSeen { get; set; }
+    public DateTimeOffset? DateMatched { get; set; }
+    public DateTimeOffset? DateContracted { get; set; }
+    public DateTimeOffset? DateFulfilled { get; set; }
+    public string? ProposalMessage { get; set; }
+    public string? Review { get; set; }
+    public int? Rating { get; set; }
+    public ContractStatus Status { get; set; }
 }

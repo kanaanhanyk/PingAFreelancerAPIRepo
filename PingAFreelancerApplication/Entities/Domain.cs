@@ -8,8 +8,8 @@ public class Domain
 {
     public int Id { get; set; }
 
-    public string Name { get; set; }
-    public string PhotoPath { get; set; }
+    public required string Name { get; set; }
+    public required string PhotoPath { get; set; }
     public ICollection<Freelancer> Freelancers { get; set; } = new List<Freelancer>();
     public ICollection<Expertise> Expertises { get; set; } = new List<Expertise>();
 }

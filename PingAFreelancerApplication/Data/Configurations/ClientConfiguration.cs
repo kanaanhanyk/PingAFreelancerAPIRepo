@@ -14,13 +14,24 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
             .IsRequired()
             .ValueGeneratedNever();
 
-        entity.Property(c => c.DisplayName)
-            .IsRequired();
+        entity.Property(c => c.FirstName)
+            .IsRequired()
+            .HasMaxLength(100);
+
+        entity.Property(c => c.LastName)
+            .HasMaxLength(100);
 
         entity.Property(c => c.Email)
-            .IsRequired();
+            .IsRequired()
+            .HasMaxLength(255);
 
         entity.HasIndex(c => c.Email);
+
+        entity.Property(c => c.PhoneNumber)
+            .HasMaxLength(32);
+
+        entity.Property(c => c.Avatar)
+            .HasMaxLength(255);
 
         entity.Property(c => c.DateRegistered)
             .IsRequired()
@@ -42,13 +53,9 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
             .IsRequired()
             .HasDefaultValue(0);
 
-        entity.Property(c => c.IsActive)
-            .IsRequired()
-            .HasDefaultValue(true);
-
         entity.HasMany(c => c.Contracts)
             .WithOne(c => c.Client)
             .HasForeignKey(c => c.ClientId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }

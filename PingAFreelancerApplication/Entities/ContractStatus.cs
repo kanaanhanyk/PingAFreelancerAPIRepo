@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PingAFreelancerApplication.Entities;
 
-public enum Status
+public enum ContractStatus
 {
     Pinged,
     Matched,

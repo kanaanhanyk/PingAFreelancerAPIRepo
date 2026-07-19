@@ -8,33 +8,32 @@ using PingAFreelancerApplication.Entities;
 
 namespace PingAFreelancerApplication.Data.Configurations;
 
-public class DomainConfiguration : IEntityTypeConfiguration<Domain>
+public class ExpertiseConfiguration : IEntityTypeConfiguration<Expertise>
 {
-    public void Configure(EntityTypeBuilder<Domain> entity)
+    public void Configure(EntityTypeBuilder<Expertise> entity)
     {
-        entity.HasKey(d => d.Id);
+        entity.HasKey(e => e.Id);
 
-        entity.Property(d => d.Id)
+        entity.Property(e => e.Id)
             .IsRequired()
             .ValueGeneratedOnAdd();
-
-        entity.Property(d => d.Name)
+            
+        entity.Property(e => e.Name)
             .IsRequired()
             .HasMaxLength(100);
 
-        entity.Property(d => d.PhotoPath)
+        entity.Property(e => e.PhotoPath)
             .IsRequired()
             .HasMaxLength(255);
 
-        entity.HasMany(d => d.Freelancers)
-            .WithOne(f => f.Domain)
-            .HasForeignKey(f => f.DomainId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        entity.HasMany(d => d.Expertises)
-            .WithOne(e => e.Domain)
+        entity.HasOne(e => e.Domain)
+            .WithMany(d => d.Expertises)
             .HasForeignKey(e => e.DomainId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        entity.HasMany(e => e.Freelancers)
+            .WithOne(f => f.Expertise)
+            .HasForeignKey(f => f.ExpertiseId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
-    
 }
