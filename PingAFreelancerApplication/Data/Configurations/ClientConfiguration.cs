@@ -30,9 +30,6 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         entity.Property(c => c.PhoneNumber)
             .HasMaxLength(32);
 
-        entity.Property(c => c.Avatar)
-            .HasMaxLength(255);
-
         entity.Property(c => c.DateRegistered)
             .IsRequired()
             .HasDefaultValueSql("SYSDATETIMEOFFSET()");

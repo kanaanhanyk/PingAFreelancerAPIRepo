@@ -23,6 +23,5 @@ public class Contract
     public DateTimeOffset? DateFulfilled { get; set; }
     public string? ProposalMessage { get; set; }
     public string? Review { get; set; }
-    public int? Rating { get; set; }
     public ContractStatus Status { get; set; }
 }
