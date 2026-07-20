@@ -2,6 +2,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
 using PingAFreelancerApplication;
+using PingAFreelancerApplication.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient.Extensions.Azure;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +22,25 @@ builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<PingAFreelancerContext>();
+    try
+    {
+        await db.Database.OpenConnectionAsync();
+        Console.WriteLine("connected");
+        await db.Database.CloseConnectionAsync();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+        if (ex.InnerException != null)
+        {
+            Console.WriteLine(ex.InnerException.Message);
+        }
+    }
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -31,4 +55,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync();
