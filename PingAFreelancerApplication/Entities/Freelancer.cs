@@ -31,4 +31,7 @@ public class Freelancer
 
     public DateTimeOffset? LastActive { get; set; }
     public ICollection<Contract> Contracts { get; set; } = new List<Contract>();
+
+    public required double Latitude { get; set; }
+    public required double Longitude { get; set; }
 }
