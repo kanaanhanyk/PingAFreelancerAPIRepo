@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using PingAFreelancerApplication.Entities;
+using PingAFreelancerCore.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace PingAFreelancerApplication.Data;
+namespace PingAFreelancerInfrastructure.Data;
 
 public class PingAFreelancerContext : DbContext
 {

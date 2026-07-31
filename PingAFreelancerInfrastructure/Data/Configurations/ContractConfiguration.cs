@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PingAFreelancerApplication.Entities;
+using PingAFreelancerCore.Entities;
 
-namespace PingAFreelancerApplication.Data.Configurations;
+namespace PingAFreelancerInfrastructure.Data.Configurations;
 
 public class ContractConfiguration : IEntityTypeConfiguration<Contract>
 {

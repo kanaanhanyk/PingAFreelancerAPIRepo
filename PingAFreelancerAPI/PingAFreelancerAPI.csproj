@@ -22,7 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PingAFreelancerCore\PingAFreelancerCore.csproj" />
     <ProjectReference Include="..\PingAFreelancerApplication\PingAFreelancerApplication.csproj" />
+    <ProjectReference Include="..\PingAFreelancerInfrastructure\PingAFreelancerInfrastructure.csproj" />
     <ProjectReference Include="..\PingAFreelancerContracts\PingAFreelancerContracts.csproj" />
   </ItemGroup>
 
