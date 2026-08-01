@@ -26,6 +26,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<PingAFreelancerContext>();
+    await db.Database.MigrateAsync();
+    await DbInitializer.SeedAsync(db)
     try
     {
         await db.Database.OpenConnectionAsync();
