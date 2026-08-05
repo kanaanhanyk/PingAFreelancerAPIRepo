@@ -16,6 +16,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddAzureClients(clients =>
+{
+    clients.AddBlobServiceClient(new Uri(builder.Configuration["Storage:BlobEndpoint"]));
+    clients.UseCredential(new DefaultAzureCredential());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
