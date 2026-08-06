@@ -7,21 +7,13 @@ using PingAFreelancerInfrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 
-builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddAzureClients(clients =>
-{
-    clients.AddBlobServiceClient(new Uri(builder.Configuration["Storage:BlobEndpoint"]));
-    clients.UseCredential(new DefaultAzureCredential());
-});
-
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();

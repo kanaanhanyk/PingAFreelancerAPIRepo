@@ -74,7 +74,7 @@ public static class DbInitializer
         var lifestyleId = context.Domains.FirstOrDefault(d => d.Name == "Lifestyle")?.Id;
         var techId = context.Domains.FirstOrDefault(d => d.Name == "Tech")?.Id;
 
-        if (laborId == null || domesticId == null || healthId == null || lifestyleId == null || techId == null)
+        if (laborId is null || domesticId is null || healthId is null || lifestyleId is null || techId is null)
         {
             return;
         }

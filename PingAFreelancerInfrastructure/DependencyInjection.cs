@@ -2,6 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PingAFreelancerInfrastructure.Data;
+using Microsoft.Extensions.Azure;
+using Azure.Identity;
+using Azure.Storage.Blobs;
 
 namespace PingAFreelancerInfrastructure;
 
@@ -13,6 +16,15 @@ public static class DependencyInjection
     {
         services.AddDbContext<PingAFreelancerContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddAzureClients(clients =>
+            {
+                clients.AddBlobServiceClient(new Uri(configuration.GetConnectionString("BlobEndpoint")));
+                clients.UseCredential(new DefaultAzureCredential());
+            });
+
+        services.AddScoped<IAssetStorage, BlobAssetStorage>();
+
 
         return services;
     }

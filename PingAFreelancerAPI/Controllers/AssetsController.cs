@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Azure.Storage.Blobs;
-using Azure.Storage.Blobs.Models;
-using Azure;
+using PingAFreelancerApplication.Assets;
 
 namespace PingAFreelancerAPI.Controllers;
 
@@ -11,32 +9,24 @@ namespace PingAFreelancerAPI.Controllers;
 [AllowAnonymous]
 public class AssetsController : ControllerBase
 {
-    private readonly BlobContainerClient _blobContainerClient;
+    private readonly IAssetStorage _assetStorage;
 
-    public AssetsController(BlobServiceClient blobServiceClient)
+    public AssetsController(IAssetStorage assetStorage)
     {
-        _blobContainerClient = blobServiceClient.GetBlobContainerClient("assets");
+        _assetStorage = assetStorage;
     }
 
     [HttpGet("{name}")]
     [ResponseCache(Duration = 604800, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> GetAsset(string name)
     {
-        var blobClient = _blobContainerClient.GetBlobClient(name);
-
-        try
+        var asset = await _assetStorage.GetAssetAsync(name);
+        if (asset is null) return NotFound();
+        Response.Headers["X-Content-Type-Options"] = "nosniff";
+        if (asset.ContentLength is { } length)
         {
-            Response<BlobDownloadStreamingResult> download = await blobClient.DownloadStreamingAsync();
-
-            Response.Headers["X-Content-Type-Options"] = "nosniff";
-            Response.ContentLength = download.Value.Details.ContentLength;
-
-            return File(download.Value.Content, download.Value.Details.ContentType);
+            Response.ContentLength = length;
         }
-        catch (RequestFailedException ex) when (ex.Status == 404)
-        {
-            return NotFound();
-        }
-
+        return File(asset.Content, asset.ContentType);
     }
 }
