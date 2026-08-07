@@ -36,7 +36,38 @@ public class DomainConfiguration : IEntityTypeConfiguration<Domain>
             .HasForeignKey(e => e.DomainId)
             .OnDelete(DeleteBehavior.Restrict);
 
-
+        entity.HasData(
+            new Domain
+            {
+                Id = -1,
+                Name = "Labor",
+                PhotoPath = "labor.png",
+            },
+            new Domain
+            {
+                Id = -2,
+                Name = "Domestic",
+                PhotoPath = "domestic.png",
+            },
+            new Domain
+            {
+                Id = -3,
+                Name = "Health",
+                PhotoPath = "health.png",
+            },
+            new Domain
+            {
+                Id = -4,
+                Name = "Lifestyle",
+                PhotoPath = "lifestyle.png",
+            },
+            new Domain
+            {
+                Id = -5,
+                Name = "Tech",
+                PhotoPath = "tech.png",
+            }
+        );
     }
     
 }
