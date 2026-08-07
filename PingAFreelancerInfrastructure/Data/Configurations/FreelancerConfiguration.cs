@@ -59,7 +59,8 @@ public class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
 
         entity.Property(f => f.HourlyRate)
             .IsRequired()
-            .HasDefaultValue(0);
+            .HasDefaultValue(0)
+            .HasPrecision(18, 2);
 
         entity.Property(f => f.HoursBilled)
             .IsRequired()
@@ -71,7 +72,8 @@ public class FreelancerConfiguration : IEntityTypeConfiguration<Freelancer>
 
         entity.Property(f => f.TotalEarned)
             .IsRequired()
-            .HasDefaultValue(0);
+            .HasDefaultValue(0)
+            .HasPrecision(18,2);
 
         entity.Property(f => f.RatingSum)
             .IsRequired()

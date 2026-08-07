@@ -35,6 +35,8 @@ public class DomainConfiguration : IEntityTypeConfiguration<Domain>
             .WithOne(e => e.Domain)
             .HasForeignKey(e => e.DomainId)
             .OnDelete(DeleteBehavior.Restrict);
+
+
     }
     
 }

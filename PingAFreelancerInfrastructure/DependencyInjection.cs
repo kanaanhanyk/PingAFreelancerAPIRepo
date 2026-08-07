@@ -5,6 +5,8 @@ using PingAFreelancerInfrastructure.Data;
 using Microsoft.Extensions.Azure;
 using Azure.Identity;
 using Azure.Storage.Blobs;
+using PingAFreelancerInfrastructure.Storage;
+using PingAFreelancerApplication.Assets;
 
 namespace PingAFreelancerInfrastructure;
 

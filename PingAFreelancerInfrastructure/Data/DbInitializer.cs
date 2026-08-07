@@ -16,7 +16,7 @@ public static class DbInitializer
         await SeedFreelancersAsync(context);
     }
 
-    private async Task SeedDomainsAsync(PingAFreelancerContext context)
+    private static async Task SeedDomainsAsync(PingAFreelancerContext context)
     {
         if (await context.Domains.AnyAsync())
         {
@@ -61,23 +61,19 @@ public static class DbInitializer
         await context.SaveChangesAsync();
     }
 
-    private async Task SeedExpertisesAsync(PingAFreelancerContext context)
+    private static async Task SeedExpertisesAsync(PingAFreelancerContext context)
     {
         if (await context.Expertises.AnyAsync())
         {
             return;
         }
 
-        var laborId = context.Domains.FirstOrDefault(d => d.Name == "Labor")?.Id;
-        var domesticId = context.Domains.FirstOrDefault(d => d.Name == "Domestic")?.Id;
-        var healthId = context.Domains.FirstOrDefault(d => d.Name == "Health")?.Id;
-        var lifestyleId = context.Domains.FirstOrDefault(d => d.Name == "Lifestyle")?.Id;
-        var techId = context.Domains.FirstOrDefault(d => d.Name == "Tech")?.Id;
+        var laborId = context.Domains.First(d => d.Name == "Labor").Id;
+        var domesticId = context.Domains.First(d => d.Name == "Domestic").Id;
+        var healthId = context.Domains.First(d => d.Name == "Health").Id;
+        var lifestyleId = context.Domains.First(d => d.Name == "Lifestyle").Id;
+        var techId = context.Domains.First(d => d.Name == "Tech").Id;
 
-        if (laborId is null || domesticId is null || healthId is null || lifestyleId is null || techId is null)
-        {
-            return;
-        }
 
         var expertises = new List<Expertise>
         {
@@ -353,23 +349,18 @@ public static class DbInitializer
         await context.SaveChangesAsync();
     }
 
-    private async Task SeedFreelancersAsync(PingAFreelancerContext context)
+    private static async Task SeedFreelancersAsync(PingAFreelancerContext context)
     {
         if (context.Freelancers.Any())
         {
             return;
         }
 
-        var laborId = context.Domains.FirstOrDefault(d => d.Name == "Labor")?.Id;
-        var domesticId = context.Domains.FirstOrDefault(d => d.Name == "Domestic")?.Id;
-        var healthId = context.Domains.FirstOrDefault(d => d.Name == "Health")?.Id;
-        var lifestyleId = context.Domains.FirstOrDefault(d => d.Name == "Lifestyle")?.Id;
-        var techId = context.Domains.FirstOrDefault(d => d.Name == "Tech")?.Id;
-
-        if (laborId == null || domesticId == null || healthId == null || lifestyleId == null || techId == null)
-        {
-            return;
-        }
+        var laborId = context.Domains.First(d => d.Name == "Labor").Id;
+        var domesticId = context.Domains.First(d => d.Name == "Domestic").Id;
+        var healthId = context.Domains.First(d => d.Name == "Health").Id;
+        var lifestyleId = context.Domains.First(d => d.Name == "Lifestyle").Id;
+        var techId = context.Domains.First(d => d.Name == "Tech").Id;
 
         var freelancers = new List<Freelancer>
         {
