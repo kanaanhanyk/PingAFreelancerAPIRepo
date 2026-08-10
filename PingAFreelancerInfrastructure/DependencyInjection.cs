@@ -7,6 +7,8 @@ using Azure.Identity;
 using Azure.Storage.Blobs;
 using PingAFreelancerInfrastructure.Storage;
 using PingAFreelancerApplication.Assets;
+using PingAFreelancerInfrastructure.Data.Repositories;
+using PingAFreelancerApplication.Domains;
 
 namespace PingAFreelancerInfrastructure;
 
@@ -26,6 +28,7 @@ public static class DependencyInjection
             });
 
         services.AddScoped<IAssetStorage, BlobAssetStorage>();
+        services.AddScoped<IDomainsRepository, DomainsRepository>();
 
 
         return services;
