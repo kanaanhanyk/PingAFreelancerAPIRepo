@@ -1,5 +1,11 @@
 namespace PingAFreelancerContracts;
 
+public enum Gender
+{
+    Male,
+    Female
+}
+
 public sealed record FreelancerResponse(
     Guid Id,
     string FirstName,
@@ -18,7 +24,8 @@ public sealed record FreelancerResponse(
     string AvatarColor,
     DateTimeOffset? LastActive,
     double Latitude,
-    double Longitude
+    double Longitude,
+    Gender Gender
 );
 
 public sealed record FreelancersResponse(
@@ -33,5 +40,6 @@ public sealed record FreelancerQuery(
     decimal? MinTotalEarned,
     int? MinInteractionCount,
     int? MinRatingSum,
-    double? MaxDistance
+    double? MaxDistance,
+    Gender? Gender
 );

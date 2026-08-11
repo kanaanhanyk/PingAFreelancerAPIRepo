@@ -38,6 +38,8 @@ public class FreelancersRepository : IFreelancersRepository
             freelancers = freelancers.Where(f => f.InteractionCount >= query.MinInteractionCount.Value);
         if (query.MinRatingSum.HasValue)
             freelancers = freelancers.Where(f => f.RatingSum >= query.MinRatingSum.Value);
+        if (query.Gender.HasValue)
+            freelancers = freelancers.Where(f => (int)f.Gender == (int)query.Gender.Value);
 
         return await freelancers.ToListAsync();
     }

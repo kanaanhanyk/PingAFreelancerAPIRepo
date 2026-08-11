@@ -22,8 +22,8 @@ public class ExpertisesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ExpertisesResponse>> GetExpertisesAsync()
+    public async Task<ActionResult<ExpertisesResponse>> GetExpertisesAsync([FromQuery] int? domainId)
     {
-        return Ok(await _expertisesService.GetExpertisesAsync());
+        return Ok(await _expertisesService.GetExpertisesAsync(domainId));
     }
 }

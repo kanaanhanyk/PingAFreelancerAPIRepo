@@ -27,3 +27,4 @@ public sealed record ContractResponse(
 public sealed record ContractsResponse(
     List<ContractResponse> Items
 );
+

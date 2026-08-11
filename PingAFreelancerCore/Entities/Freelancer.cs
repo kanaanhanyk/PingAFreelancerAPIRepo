@@ -23,7 +23,8 @@ public class Freelancer
     public int RatingSum { get; set; }
 
     public required string FirstName { get; set; }
-    public string? LastName { get; set; } 
+    public string? LastName { get; set; }
+    public required Gender Gender { get; set; }
 
     public DateTimeOffset DateRegistered { get; set; }
     public required string PhotoPath { get; set; }

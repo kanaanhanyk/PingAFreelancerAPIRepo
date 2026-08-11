@@ -5,5 +5,5 @@ namespace PingAFreelancerApplication.Expertises;
 public interface IExpertisesService
 {
     Task<ExpertiseResponse> GetExpertiseAsync(int id);
-    Task<ExpertisesResponse> GetExpertisesAsync();
+    Task<ExpertisesResponse> GetExpertisesAsync(int? domainId);
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PingAFreelancerInfrastructure.Data;
 
@@ -11,9 +12,11 @@ using PingAFreelancerInfrastructure.Data;
 namespace PingAFreelancerInfrastructure.Migrations
 {
     [DbContext(typeof(PingAFreelancerContext))]
-    partial class PingAFreelancerContextModelSnapshot : ModelSnapshot
+    [Migration("20260811120506_AddGender")]
+    partial class AddGender
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

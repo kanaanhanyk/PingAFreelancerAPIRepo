@@ -1,3 +1,5 @@
+using PingAFreelancerContracts;
+
 using PingAFreelancerCore.Entities;
 
 namespace PingAFreelancerApplication.Freelancers;

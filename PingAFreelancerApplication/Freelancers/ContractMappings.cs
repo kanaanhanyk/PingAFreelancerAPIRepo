@@ -25,7 +25,8 @@ public static class ContractMappings
                 freelancer.AvatarColor,
                 freelancer.LastActive,
                 freelancer.Latitude,
-                freelancer.Longitude
+                freelancer.Longitude,
+                (PingAFreelancerContracts.Gender)(int)freelancer.Gender
             );
         }
 

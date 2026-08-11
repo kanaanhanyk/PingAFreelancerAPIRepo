@@ -17,9 +17,9 @@ public class ExpertisesService : IExpertisesService
         return expertise.MapToExpertiseResponse();
     }
 
-    public async Task<ExpertisesResponse> GetExpertisesAsync()
+    public async Task<ExpertisesResponse> GetExpertisesAsync(int? domainId)
     {
-        var expertises = await _expertisesRepository.GetExpertisesAsync();
+        var expertises = await _expertisesRepository.GetExpertisesAsync(domainId);
         return expertises.MapToExpertisesResponse();
     }
 }

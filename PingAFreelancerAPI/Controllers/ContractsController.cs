@@ -15,15 +15,16 @@ public class ContractsController : ControllerBase
         _contractsService = contractsService;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<ContractResponse>> GetContractAsync(Guid id)
     {
         return Ok(await _contractsService.GetContractAsync(id));
     }
 
-    [HttpGet]
-    public async Task<ActionResult<ContractsResponse>> GetContractsAsync()
+    [HttpGet("{freelancerId:guid}/{clientId:guid}")]
+    public async Task<ActionResult<ContractsResponse>> GetContractsAsync(
+        Guid freelancerId, Guid clientId, [FromQuery] ContractStatus contractStatus)
     {
-        return Ok(await _contractsService.GetContractsAsync());
+        return Ok(await _contractsService.GetContractsAsync(freelancerId, clientId, contractStatus));
     }
 }

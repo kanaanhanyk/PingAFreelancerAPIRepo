@@ -23,4 +23,11 @@ public class ContractsRepository : IContractsRepository
     {
         return await _context.Contracts.ToListAsync();
     }
+
+    public async Task<List<Contract>> GetContractsAsync(Guid freelancerId, Guid clientId, ContractStatus contractStatus)
+    {
+        return await _context.Contracts
+            .Where(c => c.FreelancerId == freelancerId && c.ClientId == clientId && c.Status == contractStatus)
+            .ToListAsync();
+    }
 }

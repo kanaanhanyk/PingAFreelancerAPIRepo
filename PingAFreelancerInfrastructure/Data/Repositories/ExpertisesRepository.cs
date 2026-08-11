@@ -19,8 +19,13 @@ public class ExpertisesRepository : IExpertisesRepository
         return await _context.Expertises.FindAsync(id);
     }
 
-    public async Task<List<Expertise>> GetExpertisesAsync()
+    public async Task<List<Expertise>> GetExpertisesAsync(int? domainId)
     {
-        return await _context.Expertises.ToListAsync();
+        var expertises = _context.Expertises.AsQueryable();
+
+        if (domainId.HasValue)
+            expertises = expertises.Where(e => e.DomainId == domainId.Value);
+
+        return await expertises.ToListAsync();
     }
 }
