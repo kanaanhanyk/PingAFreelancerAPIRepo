@@ -2,9 +2,7 @@ namespace PingAFreelancerContracts;
 
 public sealed record DomainResponse(
     string Name,
-    string PhotoPath,
-    FreelancersResponse Freelancers,
-    ExpertisesResponse Expertises
+    string PhotoPath
 );
 
 public sealed record DomainsResponse(

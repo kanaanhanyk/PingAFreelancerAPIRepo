@@ -11,9 +11,7 @@ public static class ContractMappings
     {
         return new DomainResponse(
             domain.Name,
-            domain.PhotoPath,
-            domain.Freelancers.MapToFreelancersResponse(),
-            domain.Expertises.MapToExpertisesResponse()
+            domain.PhotoPath
         );
     }
 
