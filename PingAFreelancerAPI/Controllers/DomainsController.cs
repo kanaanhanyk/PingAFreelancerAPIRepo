@@ -15,16 +15,17 @@ public class DomainsController : ControllerBase
     }
 
     [HttpGet]
+    public async Task<ActionResult<DomainsResponse>> GetDomainsAsync()
+    {
+        return Ok(await _domainsService.GetDomainsAsync());
+    }
+
+    [HttpGet("{id}")]
     public async Task<ActionResult<DomainResponse>> GetDomainAsync(int id)
     {
         return Ok(await _domainsService.GetDomainAsync(id));
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<DomainsResponse>> GetDomainsAsync()
-    {
-        return Ok(await _domainsService.GetDomainsAsync());
-    }
 
 }
 

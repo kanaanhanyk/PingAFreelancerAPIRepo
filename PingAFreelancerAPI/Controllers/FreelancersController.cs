@@ -1,31 +1,29 @@
 using Microsoft.AspNetCore.Mvc;
+using PingAFreelancerApplication.Freelancers;
 using PingAFreelancerContracts;
 
 namespace PingAFreelancerAPI.Controllers;
 
-[ApiControler]
+[ApiController]
 [Route("api/[controller]")]
 public class FreelancersController : ControllerBase
 {
     private readonly IFreelancersService _freelancersService;
 
-    public FreelancersControler(IFreelancersService freelansersService)
+    public FreelancersController(IFreelancersService freelancersService)
     {
         _freelancersService = freelancersService;
-
-    }
-
-    [HttpGet]
-    public async Task<ActionResult<FreelancersResponse>> GetFreelanceersAsync()
-    {
-        var freelancers = await _freelandersService.GetFreelancersAsync();
-        return Ok(freelancers);
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<FreelancerResponse>> GetFreelancerAsync(int id)
+    public async Task<ActionResult<FreelancerResponse>> GetFreelancerAsync(Guid id)
     {
-        var freelancer = await _freelancersService.GetFreelancerAsync(id);
-        return Ok(freelancer);
+        return Ok(await _freelancersService.GetFreelancerAsync(id));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<FreelancersResponse>> GetFreelancersAsync([FromQuery] FreelancerQuery query)
+    {
+        return Ok(await _freelancersService.GetFreelancersAsync(query));
     }
 }

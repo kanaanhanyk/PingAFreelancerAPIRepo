@@ -9,6 +9,10 @@ using PingAFreelancerInfrastructure.Storage;
 using PingAFreelancerApplication.Assets;
 using PingAFreelancerInfrastructure.Data.Repositories;
 using PingAFreelancerApplication.Domains;
+using PingAFreelancerApplication.Expertises;
+using PingAFreelancerApplication.Freelancers;
+using PingAFreelancerApplication.Clients;
+using PingAFreelancerApplication.Contracts;
 
 namespace PingAFreelancerInfrastructure;
 
@@ -29,7 +33,10 @@ public static class DependencyInjection
 
         services.AddScoped<IAssetStorage, BlobAssetStorage>();
         services.AddScoped<IDomainsRepository, DomainsRepository>();
-
+        services.AddScoped<IExpertisesRepository, ExpertisesRepository>();
+        services.AddScoped<IFreelancersRepository, FreelancersRepository>();
+        services.AddScoped<IClientsRepository, ClientsRepository>();
+        services.AddScoped<IContractsRepository, ContractsRepository>();
 
         return services;
     }

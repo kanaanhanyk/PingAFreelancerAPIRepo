@@ -24,3 +24,14 @@ public sealed record FreelancerResponse(
 public sealed record FreelancersResponse(
     List<FreelancerResponse> Items
 );
+
+public sealed record FreelancerQuery(
+    int? DomainId,
+    int? ExpertiseId,
+    decimal? MaxHourlyRate,
+    int? MinHoursBilled,
+    decimal? MinTotalEarned,
+    int? MinInteractionCount,
+    int? MinRatingSum,
+    double? MaxDistance
+);
