@@ -26,4 +26,10 @@ public class ClientsController : ControllerBase
     {
         return Ok(await _clientsService.GetClientsAsync());
     }
+
+    [HttpPost]
+    public async Task<ActionResult<ClientResponse>> CreateClientAsync(ClientRequest clientRequest)
+    {
+        return Ok(await _clientsService.CreateClientAsync(clientRequest));
+    }
 }

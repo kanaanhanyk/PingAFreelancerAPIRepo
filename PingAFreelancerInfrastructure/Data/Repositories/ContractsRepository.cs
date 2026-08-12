@@ -19,15 +19,16 @@ public class ContractsRepository : IContractsRepository
         return await _context.Contracts.FindAsync(id);
     }
 
-    public async Task<List<Contract>> GetContractsAsync()
-    {
-        return await _context.Contracts.ToListAsync();
-    }
-
     public async Task<List<Contract>> GetContractsAsync(Guid freelancerId, Guid clientId, ContractStatus contractStatus)
     {
         return await _context.Contracts
             .Where(c => c.FreelancerId == freelancerId && c.ClientId == clientId && c.Status == contractStatus)
             .ToListAsync();
+    }
+
+    public async Task CreateContractAsync(Contract contract)
+    {
+        _context.Add(contract);
+        await _context.SaveChangesAsync();
     }
 }

@@ -18,3 +18,11 @@ public sealed record ClientResponse(
 public sealed record ClientsResponse(
     List<ClientResponse> Items
 );
+
+public sealed record ClientRequest(
+    string FirstName,
+    string? LastName,
+    string Email,
+    string? PhoneNumber,
+    string AvatarColor
+);

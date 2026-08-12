@@ -22,4 +22,10 @@ public class ClientsService : IClientsService
         var clients = await _clientsRepository.GetClientsAsync();
         return clients.MapToClientsResponse();
     }
+
+    public async Task<ClientResponse> CreateClientAsync(ClientRequest clientRequest)
+    {
+        var client = await _clientsRepository.CreateClientAsync(clientRequest);
+        return client.MapToClientResponse();
+    }
 }

@@ -23,4 +23,5 @@ public class ContractsService : IContractsService
         var contracts = await _contractsRepository.GetContractsAsync(freelancerId, clientId, coreStatus);
         return contracts.MapToContractsResponse();
     }
+
 }
