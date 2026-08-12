@@ -27,4 +27,10 @@ public class ContractsController : ControllerBase
     {
         return Ok(await _contractsService.GetContractsAsync(freelancerId, clientId, contractStatus));
     }
+
+    [HttpPost]
+    public async Task<ActionResult<ContractResponse>> CreateContractAsync(ContractRequest request)
+    {
+        return Ok(await _contractsService.CreateContractAsync(request));
+    }
 }

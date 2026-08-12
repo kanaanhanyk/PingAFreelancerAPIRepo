@@ -28,3 +28,17 @@ public sealed record ContractsResponse(
     List<ContractResponse> Items
 );
 
+public sealed record ContractRequest(
+    Guid ClientId,
+    Guid FreelancerId,
+    int? Rating,
+    int? HoursContracted,
+    decimal? AmountPaid,
+    DateTimeOffset DatePinged,
+    DateTimeOffset? DateMatched,
+    DateTimeOffset? DateContracted,
+    DateTimeOffset? DateFulfilled,
+    string? ProposalMessage,
+    string? Review,
+    ContractStatus Status
+);

@@ -24,4 +24,9 @@ public class ContractsService : IContractsService
         return contracts.MapToContractsResponse();
     }
 
+    public async Task<ContractResponse> CreateContractAsync(ContractRequest request)
+    {
+        var contract = await _contractsRepository.CreateContractAsync(request);
+        return contract.MapToContractResponse();
+    }
 }
