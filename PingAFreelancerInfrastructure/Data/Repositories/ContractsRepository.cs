@@ -27,26 +27,68 @@ public class ContractsRepository : IContractsRepository
             .ToListAsync();
     }
 
-    public async Task<Contract> CreateContractAsync(ContractRequest contract)
+    public async Task<Contract> PingAsync(ContractRequest contract)
     {
         var newContract = new Contract
         {
             ClientId = contract.ClientId,
             FreelancerId = contract.FreelancerId,
-            Rating = contract.Rating,
-            HoursContracted = contract.HoursContracted,
-            AmountPaid = contract.AmountPaid,
-            DatePinged = contract.DatePinged,
-            DateMatched = contract.DateMatched,
-            DateContracted = contract.DateContracted,
-            DateFulfilled = contract.DateFulfilled,
-            ProposalMessage = contract.ProposalMessage,
-            Review = contract.Review,
-            Status = (PingAFreelancerCore.Entities.ContractStatus)(int)contract.Status,
+            Rating = null,
+            HoursContracted = null,
+            AmountPaid = null,
+            DatePinged = DateTimeOffset.UtcNow,
+            DateMatched = null,
+            DateContracted = null,
+            DateFulfilled = null,
+            ProposalMessage = null,
+            Review = null,
+            Status = PingAFreelancerCore.Entities.ContractStatus.Pinged,
         };
-        _context.Add(newContract);
+        _context.Contracts.Add(newContract);
         await _context.SaveChangesAsync();
 
         return newContract;
+    }
+
+    public async Task<Contract?> MatchAsync(ContractRequest contract, Guid id)
+    {
+        var existingContract = await _context.Contracts.FindAsync(id);
+        if (existingContract == null) return null;
+
+        existingContract.DateMatched = DateTimeOffset.UtcNow;
+        existingContract.ProposalMessage = contract.ProposalMessage;
+        existingContract.Status = PingAFreelancerCore.Entities.ContractStatus.Matched;
+        await _context.SaveChangesAsync();
+
+        return existingContract;
+    }
+
+    public async Task<Contract?> ContractAsync(Guid id)
+    {
+        var existingContract = await _context.Contracts.FindAsync(id);
+        if (existingContract == null) return null;
+
+        existingContract.DateContracted = DateTimeOffset.UtcNow;
+        existingContract.Status = PingAFreelancerCore.Entities.ContractStatus.Contracted;
+        await _context.SaveChangesAsync();
+
+        return existingContract;
+    }
+
+    public async Task<Contract?> FulfillAsync(ContractRequest contract, Guid id)
+    {
+        var existingContract = await _context.Contracts.FindAsync(id);
+        if (existingContract == null) return null;
+
+        existingContract.Rating = contract.Rating;
+        existingContract.HoursContracted = contract.HoursContracted;
+        existingContract.AmountPaid = contract.AmountPaid;
+        existingContract.DateFulfilled = DateTimeOffset.UtcNow;
+        existingContract.Review = contract.Review;
+        existingContract.Status = PingAFreelancerCore.Entities.ContractStatus.Fulfilled;
+
+        await _context.SaveChangesAsync();
+
+        return existingContract;
     }
 }

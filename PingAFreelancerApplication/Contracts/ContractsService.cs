@@ -24,9 +24,27 @@ public class ContractsService : IContractsService
         return contracts.MapToContractsResponse();
     }
 
-    public async Task<ContractResponse> CreateContractAsync(ContractRequest request)
+    public async Task<ContractResponse> PingAsync(ContractRequest request)
     {
-        var contract = await _contractsRepository.CreateContractAsync(request);
+        var contract = await _contractsRepository.PingAsync(request);
         return contract.MapToContractResponse();
+    }
+
+    public async Task<ContractResponse?> MatchAsync(ContractRequest request, Guid id)
+    {
+        var contract = await _contractsRepository.MatchAsync(request, id);
+        return contract?.MapToContractResponse();
+    }
+
+    public async Task<ContractResponse?> ContractAsync(Guid id)
+    {
+        var contract = await _contractsRepository.ContractAsync(id);
+        return contract?.MapToContractResponse();
+    }
+
+    public async Task<ContractResponse?> FulfillAsync(ContractRequest request, Guid id)
+    {
+        var contract = await _contractsRepository.FulfillAsync(request, id);
+        return contract?.MapToContractResponse();
     }
 }

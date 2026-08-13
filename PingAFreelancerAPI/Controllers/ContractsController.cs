@@ -29,8 +29,30 @@ public class ContractsController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<ContractResponse>> CreateContractAsync(ContractRequest request)
+    public async Task<ActionResult<ContractResponse>> PingAsync(ContractRequest request)
     {
-        return Ok(await _contractsService.CreateContractAsync(request));
+        var response = await _contractsService.PingAsync(request);
+        return CreatedAtAction(nameof(GetContractAsync), new { id = response.Id }, response);
+    }
+
+    [HttpPut("{id:guid}/match")]
+    public async Task<ActionResult<ContractResponse>> MatchAsync(ContractRequest request, Guid id)
+    {
+        var response = await _contractsService.MatchAsync(request, id);
+        return response == null ? NotFound() : Ok(response);
+    }
+
+    [HttpPut("{id:guid}/contract")]
+    public async Task<ActionResult<ContractResponse>> ContractAsync(Guid id)
+    {
+        var response = await _contractsService.ContractAsync(id);
+        return response == null ? NotFound() : Ok(response);
+    }
+
+    [HttpPut("{id:guid}/fulfill")]
+    public async Task<ActionResult<ContractResponse>> FulfillAsync(ContractRequest request, Guid id)
+    {
+        var response = await _contractsService.FulfillAsync(request, id);
+        return response == null ? NotFound() : Ok(response);
     }
 }
