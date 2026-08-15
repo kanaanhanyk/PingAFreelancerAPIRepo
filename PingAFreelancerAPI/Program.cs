@@ -10,11 +10,26 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
+builder.Services.Configure<JwtBearerOptions>(
+    JwtBearerDefaults.AuthenticationScheme,
+    options => options.TokenValidationParameters.RoleClaimType = "roles");
+
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("Spa", policy => policy
+            .WithOrigins(builder.Configuration["ClientOrigin"]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+    });
 
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -49,9 +64,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("Spa");
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
