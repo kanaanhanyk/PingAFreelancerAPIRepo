@@ -15,7 +15,7 @@ public static class ContractMappings
         );
     }
 
-    public static ExpertisesResponse MapToExpertisesResponse(this ICollection<Expertise> expertises)
+    public static ExpertisesResponse MapToExpertisesResponse(this List<Expertise> expertises)
     {
         return new ExpertisesResponse(
             expertises.Select(MapToExpertiseResponse).ToList()

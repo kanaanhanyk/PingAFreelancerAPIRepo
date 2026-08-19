@@ -11,7 +11,7 @@ namespace PingAFreelancerAPI.Controllers;
 [RequiredScope("access_as_user")]
 public class ListingsController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("mine")]
     public IActionResult GetMine()
     {
         var oid = User.GetObjectId();

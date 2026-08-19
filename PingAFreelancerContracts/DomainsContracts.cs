@@ -1,6 +1,7 @@
 namespace PingAFreelancerContracts;
 
 public sealed record DomainResponse(
+    int Id,
     string Name,
     string PhotoPath
 );

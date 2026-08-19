@@ -10,6 +10,7 @@ public static class ContractMappings
     public static DomainResponse MapToDomainResponse(this Domain domain)
     {
         return new DomainResponse(
+            domain.Id,
             domain.Name,
             domain.PhotoPath
         );
