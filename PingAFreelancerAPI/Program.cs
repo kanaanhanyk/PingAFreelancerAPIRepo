@@ -5,7 +5,8 @@ using PingAFreelancerApplication;
 using PingAFreelancerInfrastructure;
 using PingAFreelancerInfrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-
+using PingAFreelancerInfrastructure.Identity;
+using PingAFreelancerApplication.Users;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,13 @@ builder.Services.Configure<JwtBearerOptions>(
     JwtBearerDefaults.AuthenticationScheme,
     options => options.TokenValidationParameters.RoleClaimType = "roles");
 
+builder.Services.AddAuthorization();
+builder.Services.AddRequiredScopeAuthorization();
+
 builder.Services.AddCors(options =>
     {
-        options.AddPolicy("Spa", policy => policy
-            .WithOrigins(builder.Configuration["ClientOrigin"]!)
+        options.AddPolicy("PafSpa", policy => policy
+            .WithOrigins(builder.Configuration.GetSection("Cors:AllowedOrigins")!.Get<string[]>()!)
             .AllowAnyHeader()
             .AllowAnyMethod());
     });
@@ -29,23 +33,22 @@ builder.Services.AddCors(options =>
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ICurrentUser, CurrentUser>();
+
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
-using (var scope = app.Services.CreateScope())
+if (app.Configuration.GetValue<bool>("RunMigrationsAtStartup"))
 {
+    using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<PingAFreelancerContext>();
-    await db.Database.MigrateAsync();
-    await DbInitializer.SeedFreelancersAsync(db);
     try
     {
-        await db.Database.OpenConnectionAsync();
-        Console.WriteLine("connected");
-        await db.Database.CloseConnectionAsync();
+        await db.Database.MigrateAsync();
+        await DbInitializer.SeedFreelancersAsync(db);
     }
     catch (Exception ex)
     {
@@ -57,18 +60,15 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.MapOpenApi();
 
 app.UseHttpsRedirection();
+app.UseRouting();
 
-app.UseCors("Spa");
+app.UseCors("PafSpa");
 
-// app.UseAuthentication();
-// app.UseAuthorization();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>edcd8e9d-3efa-4580-aec1-4a80d04f4ba8</id>
+  <author>QuickDeploy</author>
+  <deployer>QuickDeploy</deployer>
+  <authorEmail></authorEmail>
+  <message>Deployment initiated via QuickDeploy</message>
+  <progress>50%</progress>
+  <status>Failed</status>
+  <statusText>Build:Failed: Build failed (exit code 1): Error: Oops... An unexpected error has occurred.; Error: System.Xml.XmlException: '.', hexadecimal value 0x00, is an invalid character. Line 1, position 1.; at System.Xml.XmlTextReaderImpl.Throw(Exception e); at Microsoft.Oryx.BuildScriptGeneratorCli.BuildScriptGenerator.TryGenerateScript(String&amp; generatedScript, Exception&amp; exception) in /__w/1/s/Oryx/src/BuildScriptGeneratorCli/BuildScriptGenerator.cs:line 63</statusText>
+  <lastSuccessEndTime />
+  <receivedTime>2026-08-19T16:55:18.3883558Z</receivedTime>
+  <startTime>2026-08-19T16:55:18.3883558Z</startTime>
+  <endTime>2026-08-19T16:55:32.1594717Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>85b2e4cb70f3</containerId>
+  <buildSummary />
+</deployment>

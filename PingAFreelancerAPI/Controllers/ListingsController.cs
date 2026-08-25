@@ -8,14 +8,15 @@ namespace PingAFreelancerAPI.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-[RequiredScope("access_as_user")]
+[RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
 public class ListingsController : ControllerBase
 {
     [HttpGet("mine")]
     public IActionResult GetMine()
     {
         var oid = User.GetObjectId();
-        return Ok(new { userId = oid });
+        var tid = User.GetTenantId();
+        return Ok(new { userId = oid, tenantId = tid });
     }
 
     [HttpDelete]
