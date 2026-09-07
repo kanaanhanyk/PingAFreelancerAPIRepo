@@ -22,7 +22,7 @@ public sealed record ClientsResponse(
 public sealed record ClientRequest(
     string FirstName,
     string? LastName,
-    string Email,
+    string? Email,
     string? PhoneNumber,
     string AvatarColor
 );

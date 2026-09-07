@@ -26,4 +26,10 @@ public class FreelancersController : ControllerBase
     {
         return Ok(await _freelancersService.GetFreelancersAsync(query));
     }
+
+    [HttpGet("count")]
+    public async Task<int> GetFreelancerCountAsync([FromQuery] FreelancerQuery query)
+    {
+        return (await _freelancersService.GetFreelancersAsync(query)).Items.Count;
+    }
 }

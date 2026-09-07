@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<deployment>
+  <id>567e4a7f-6dc3-42f0-94ce-99122d776c48</id>
+  <author>QuickDeploy</author>
+  <deployer>QuickDeploy</deployer>
+  <authorEmail></authorEmail>
+  <message>Deployment initiated via QuickDeploy</message>
+  <progress>100%</progress>
+  <status>Success</status>
+  <statusText>Deploy:Deployment successful</statusText>
+  <lastSuccessEndTime>2026-08-20T09:53:27.9225726Z</lastSuccessEndTime>
+  <receivedTime>2026-08-20T09:53:16.7057663Z</receivedTime>
+  <startTime>2026-08-20T09:53:16.7057663Z</startTime>
+  <endTime>2026-08-20T09:53:27.9225726Z</endTime>
+  <complete>True</complete>
+  <is_temp>False</is_temp>
+  <is_readonly>True</is_readonly>
+  <containerId>ddf3214dd118</containerId>
+  <buildSummary />
+</deployment>

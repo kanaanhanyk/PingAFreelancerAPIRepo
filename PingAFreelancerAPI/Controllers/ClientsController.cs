@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using PingAFreelancerApplication.Clients;
 using PingAFreelancerContracts;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace PingAFreelancerAPI.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class ClientsController : ControllerBase
 {
@@ -30,7 +33,11 @@ public class ClientsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<ClientResponse>> CreateClientAsync(ClientRequest clientRequest)
     {
-        var response = await _clientsService.CreateClientAsync(clientRequest);
-        return CreatedAtAction(nameof(GetClientAsync), new { id = response.Id }, response);
+        var (response, created) = await _clientsService.CreateClientAsync(clientRequest);
+        if (created)
+        {
+            return CreatedAtAction(nameof(GetClientAsync), new { id = response.Id }, response);
+        }
+        return Ok(response);
     }
 }

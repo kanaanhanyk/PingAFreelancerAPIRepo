@@ -7,5 +7,5 @@ public interface IClientsRepository
 {
     Task<Client> GetClientAsync(Guid id);
     Task<List<Client>> GetClientsAsync();
-    Task<Client> CreateClientAsync(ClientRequest client);
+    Task<(Client, bool)> CreateClientAsync(ClientRequest client, Guid oidGuid);
 }
