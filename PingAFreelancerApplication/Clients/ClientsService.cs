@@ -32,8 +32,6 @@ public class ClientsService : IClientsService
 
         if (!Guid.TryParse(oid, out var objectId))
         {
-            Console.Error.WriteLine(oid);
-            Console.Error.WriteLine(objectId);
             throw new ArgumentException("Invalid ObjectId", nameof(oid));
         }
 

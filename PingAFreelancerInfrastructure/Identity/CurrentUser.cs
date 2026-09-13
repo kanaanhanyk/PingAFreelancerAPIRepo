@@ -1,3 +1,4 @@
+using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Http;
 using PingAFreelancerApplication.Users;
 using System.Security.Claims;
@@ -15,8 +16,8 @@ namespace PingAFreelancerInfrastructure.Identity
 
         private ClaimsPrincipal? claimsPrincipal => _httpContextAccessor.HttpContext?.User;
 
-        public string? ObjectId => claimsPrincipal?.FindFirstValue("oid");
-        public string? TenantId => claimsPrincipal?.FindFirstValue("tid");
+        public string? ObjectId => claimsPrincipal?.GetObjectId();
+        public string? TenantId => claimsPrincipal?.GetTenantId();
         public bool IsAuthenticated => claimsPrincipal?.Identity?.IsAuthenticated ?? false;
     }
 }

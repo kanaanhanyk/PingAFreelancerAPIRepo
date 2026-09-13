@@ -8,4 +8,5 @@ public interface IFreelancersRepository
 {
     Task<Freelancer> GetFreelancerAsync(Guid id);
     Task<List<Freelancer>> GetFreelancersAsync(FreelancerQuery query);
+    Task<int> GetFreelancersCountAsync(FreelancerQuery query);
 }

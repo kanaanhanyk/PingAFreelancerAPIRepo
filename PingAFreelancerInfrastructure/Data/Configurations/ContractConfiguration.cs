@@ -12,7 +12,7 @@ public class ContractConfiguration : IEntityTypeConfiguration<Contract>
 
         entity.Property(c => c.Id)
             .IsRequired()
-            .ValueGeneratedNever();
+            .ValueGeneratedOnAdd();
 
         entity.HasOne(c => c.Client)
             .WithMany(c => c.Contracts)

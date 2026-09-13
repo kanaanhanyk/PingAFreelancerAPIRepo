@@ -15,7 +15,7 @@ public class ContractsController : ControllerBase
         _contractsService = contractsService;
     }
 
-    [HttpGet("{id:guid}")]
+    [HttpGet("{id:guid}", Name = "GetContract")]
     public async Task<ActionResult<ContractResponse>> GetContractAsync(Guid id)
     {
         return Ok(await _contractsService.GetContractAsync(id));
@@ -23,16 +23,16 @@ public class ContractsController : ControllerBase
 
     [HttpGet("{freelancerId:guid}/{clientId:guid}")]
     public async Task<ActionResult<ContractsResponse>> GetContractsAsync(
-        Guid freelancerId, Guid clientId, [FromQuery] ContractStatus contractStatus)
+        Guid freelancerId, Guid clientId)
     {
-        return Ok(await _contractsService.GetContractsAsync(freelancerId, clientId, contractStatus));
+        return Ok(await _contractsService.GetContractsAsync(freelancerId, clientId));
     }
 
     [HttpPost]
     public async Task<ActionResult<ContractResponse>> PingAsync(ContractRequest request)
     {
         var response = await _contractsService.PingAsync(request);
-        return CreatedAtAction(nameof(GetContractAsync), new { id = response.Id }, response);
+        return CreatedAtRoute("GetContract", new { id = response.Id }, response);
     }
 
     [HttpPut("{id:guid}/match")]
@@ -54,5 +54,11 @@ public class ContractsController : ControllerBase
     {
         var response = await _contractsService.FulfillAsync(request, id);
         return response == null ? NotFound() : Ok(response);
+    }
+
+    [HttpGet("client/{clientId:guid}")]
+    public async Task<ActionResult<ContractsResponse>> GetClientContractsAsync(Guid clientId)
+    {
+        return Ok(await _contractsService.GetClientContractsAsync(clientId));
     }
 }

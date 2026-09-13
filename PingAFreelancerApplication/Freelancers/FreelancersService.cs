@@ -22,4 +22,9 @@ public class FreelancersService : IFreelancersService
         var freelancers = await _freelancersRepository.GetFreelancersAsync(query);
         return freelancers.MapToFreelancersResponse();
     }
+
+    public async Task<int> GetFreelancersCountAsync(FreelancerQuery query)
+    {
+        return await _freelancersRepository.GetFreelancersCountAsync(query);
+    }
 }

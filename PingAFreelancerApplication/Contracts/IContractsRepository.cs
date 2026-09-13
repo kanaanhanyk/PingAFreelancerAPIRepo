@@ -10,4 +10,5 @@ public interface IContractsRepository
     Task<Contract?> MatchAsync(PingAFreelancerContracts.ContractRequest contract, Guid id);
     Task<Contract?> ContractAsync(Guid id);
     Task<Contract?> FulfillAsync(PingAFreelancerContracts.ContractRequest contract, Guid id);
+    Task<List<Contract>> GetClientContractsAsync(Guid clientId);
 }

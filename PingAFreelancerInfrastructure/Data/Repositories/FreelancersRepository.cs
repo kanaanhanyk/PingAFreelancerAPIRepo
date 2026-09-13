@@ -20,7 +20,19 @@ public class FreelancersRepository : IFreelancersRepository
         return await _context.Freelancers.FindAsync(id);
     }
 
+    public async Task<int> GetFreelancersCountAsync(FreelancerQuery query)
+    {
+        var freelancers = await QueryFreelancersAsync(query);
+        return await freelancers.CountAsync();
+    }
+
     public async Task<List<Freelancer>> GetFreelancersAsync(FreelancerQuery query)
+    {
+        var freelancers = await QueryFreelancersAsync(query);
+        return await freelancers.ToListAsync();
+    }
+
+    public async Task<IQueryable<Freelancer>> QueryFreelancersAsync(FreelancerQuery query)
     {
         var freelancers = _context.Freelancers.AsQueryable();
 
@@ -40,7 +52,6 @@ public class FreelancersRepository : IFreelancersRepository
             freelancers = freelancers.Where(f => f.RatingSum >= query.MinRatingSum.Value);
         if (query.Gender.HasValue)
             freelancers = freelancers.Where(f => (int)f.Gender == (int)query.Gender.Value);
-
-        return await freelancers.ToListAsync();
+        return freelancers;
     }
 }

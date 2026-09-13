@@ -15,7 +15,7 @@ public class FreelancersController : ControllerBase
         _freelancersService = freelancersService;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:guid}")]
     public async Task<ActionResult<FreelancerResponse>> GetFreelancerAsync(Guid id)
     {
         return Ok(await _freelancersService.GetFreelancerAsync(id));
@@ -28,8 +28,8 @@ public class FreelancersController : ControllerBase
     }
 
     [HttpGet("count")]
-    public async Task<int> GetFreelancerCountAsync([FromQuery] FreelancerQuery query)
+    public async Task<int> GetFreelancersCountAsync([FromQuery] FreelancerQuery query)
     {
-        return (await _freelancersService.GetFreelancersAsync(query)).Items.Count;
+        return (await _freelancersService.GetFreelancersCountAsync(query));
     }
 }

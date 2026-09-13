@@ -29,6 +29,10 @@ public class ContractsRepository : IContractsRepository
 
     public async Task<Contract> PingAsync(ContractRequest contract)
     {
+        var existing = await _context.Contracts.SingleOrDefaultAsync(
+            c => c.ClientId == contract.ClientId && c.FreelancerId == contract.FreelancerId);
+        if (existing is not null) return existing;
+
         var newContract = new Contract
         {
             ClientId = contract.ClientId,
@@ -90,5 +94,12 @@ public class ContractsRepository : IContractsRepository
         await _context.SaveChangesAsync();
 
         return existingContract;
+    }
+
+    public async Task<List<Contract>> GetClientContractsAsync(Guid clientId)
+    {
+        return await _context.Contracts
+            .Where(c => c.ClientId == clientId)
+            .ToListAsync();
     }
 }

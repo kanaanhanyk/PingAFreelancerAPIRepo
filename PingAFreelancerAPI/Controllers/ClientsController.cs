@@ -18,7 +18,7 @@ public class ClientsController : ControllerBase
         _clientsService = clientsService;
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id}", Name = "GetClient")]
     public async Task<ActionResult<ClientResponse>> GetClientAsync(Guid id)
     {
         return Ok(await _clientsService.GetClientAsync(id));
@@ -36,7 +36,7 @@ public class ClientsController : ControllerBase
         var (response, created) = await _clientsService.CreateClientAsync(clientRequest);
         if (created)
         {
-            return CreatedAtAction(nameof(GetClientAsync), new { id = response.Id }, response);
+            return CreatedAtRoute("GetClient", new { id = response.Id }, response);
         }
         return Ok(response);
     }

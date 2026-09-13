@@ -12,7 +12,7 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 
         entity.Property(c => c.Id)
             .IsRequired()
-            .ValueGeneratedNever();
+            .ValueGeneratedOnAdd();
 
         entity.Property(c => c.FirstName)
             .IsRequired()

@@ -10,4 +10,5 @@ public interface IContractsService
     Task<ContractResponse?> MatchAsync(ContractRequest request, Guid id);
     Task<ContractResponse?> ContractAsync(Guid id);
     Task<ContractResponse?> FulfillAsync(ContractRequest request, Guid id);
+    Task<ContractsResponse> GetClientContractsAsync(Guid clientId);
 }

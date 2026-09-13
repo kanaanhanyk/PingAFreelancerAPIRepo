@@ -47,4 +47,10 @@ public class ContractsService : IContractsService
         var contract = await _contractsRepository.FulfillAsync(request, id);
         return contract?.MapToContractResponse();
     }
+
+    public async Task<ContractsResponse> GetClientContractsAsync(Guid clientId)
+    {
+        var contracts = await _contractsRepository.GetClientContractsAsync(clientId);
+        return contracts.MapToContractsResponse();
+    }
 }

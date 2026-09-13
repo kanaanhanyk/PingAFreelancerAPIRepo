@@ -23,6 +23,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.5" />
 
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
+
+    <PackageReference Include="Microsoft.Identity.Web" Version="4.14.2" />
   </ItemGroup>
 
   <ItemGroup>
