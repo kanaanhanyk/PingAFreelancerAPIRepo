@@ -17,10 +17,9 @@ public class ContractsService : IContractsService
         return contract.MapToContractResponse();
     }
 
-    public async Task<ContractsResponse> GetContractsAsync(Guid freelancerId, Guid clientId, ContractStatus contractStatus)
+    public async Task<ContractsResponse> GetContractsAsync(Guid freelancerId, Guid clientId)
     {
-        var coreStatus = (PingAFreelancerCore.Entities.ContractStatus)(int)contractStatus;
-        var contracts = await _contractsRepository.GetContractsAsync(freelancerId, clientId, coreStatus);
+        var contracts = await _contractsRepository.GetContractsAsync(freelancerId, clientId);
         return contracts.MapToContractsResponse();
     }
 

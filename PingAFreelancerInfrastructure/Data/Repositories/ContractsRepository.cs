@@ -20,10 +20,10 @@ public class ContractsRepository : IContractsRepository
         return await _context.Contracts.FindAsync(id);
     }
 
-    public async Task<List<Contract>> GetContractsAsync(Guid freelancerId, Guid clientId, PingAFreelancerCore.Entities.ContractStatus contractStatus)
+    public async Task<List<Contract>> GetContractsAsync(Guid freelancerId, Guid clientId)
     {
         return await _context.Contracts
-            .Where(c => c.FreelancerId == freelancerId && c.ClientId == clientId && c.Status == contractStatus)
+            .Where(c => c.FreelancerId == freelancerId && c.ClientId == clientId)
             .ToListAsync();
     }
 
